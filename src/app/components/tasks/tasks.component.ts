@@ -12,7 +12,7 @@ export class TasksComponent implements OnInit {
   constructor(private taskServices: TaskService) {}
 
   ngOnInit() {
-    this.taskServices.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    this.taskServices.getTasks().subscribe(res => (this.tasks = res.data));
   }
   deleteTask(task: Task) {
     this.taskServices
@@ -26,6 +26,8 @@ export class TasksComponent implements OnInit {
     this.taskServices.updateTaskReminder(task).subscribe();
   }
   addtask(task: Task) {
-    this.taskServices.addTask(task).subscribe((task) => this.tasks.push(task));
+    this.taskServices
+      .addTask(task)
+      .subscribe(createdTask => this.tasks.push(createdTask));
   }
 }

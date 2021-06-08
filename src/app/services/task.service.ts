@@ -13,10 +13,10 @@ const httpOptions = {
   providedIn: "root",
 })
 export class TaskService {
-  private apiUrl = "http://localhost:5000/tasks";
+  private apiUrl = "http://127.0.0.1:8000/api/tasks";
   constructor(private http:HttpClient) {}
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+  getTasks() {
+    return this.http.get<{data: Task[]}>(this.apiUrl);
   }
   deleteTask(task:Task): Observable<Task>{
     const url =`${this.apiUrl}/${task.id}`;
